@@ -4,6 +4,8 @@ import Layout from '~/layout';
 import Loader from '~/components/shared/Loader';
 
 const IndexScreen = lazy(() => import('~/components/screens/Index'));
+const CoursesScreen = lazy(() => import('~/components/screens/CoursesScreen'));
+const BlogsScreen = lazy(() => import('~/components/screens/BlogsScreen'));
 const Page404Screen = lazy(() => import('~/components/screens/404'));
 
 export const Router = () => {
@@ -23,6 +25,14 @@ const InnerRouter = () => {
         {
           index: true,
           element: <IndexScreen />,
+        },
+        {
+          path: '/courses',
+          element: <CoursesScreen />,
+        },
+        {
+          path: '/blogs',
+          element: <BlogsScreen />,
         },
         {
           path: '*',

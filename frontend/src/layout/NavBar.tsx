@@ -3,6 +3,7 @@ import { useTheme } from '~/components/contexts/ThemeContext';
 import { useAuthState } from '~/components/contexts/UserContext';
 import { useAuth } from '~/lib/firebase';
 import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { Link, NavLink } from 'react-router-dom';
 
 const NavBar: React.FC = () => {
   const [toggle, setToggle] = useState(false);
@@ -52,25 +53,27 @@ const NavBar: React.FC = () => {
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li>
-              <a>Courses</a>
+              <NavLink to="/courses">Courses</NavLink>
             </li>
             <li>
-              <a>Blogs</a>
+              <NavLink to="/blogs">Blogs</NavLink>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">Course Media</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          Course Media
+        </Link>
       </div>
 
       <div className="navbar-end">
         <div className="flex items-center gap-2">
           <div className="hidden lg:flex">
-            <ul className="menu menu-horizontal p-0">
+            <ul className="menu menu-horizontal p-0 gap-1">
               <li>
-                <a>Courses</a>
+                <NavLink to="/courses">Courses</NavLink>
               </li>
               <li>
-                <a>Blogs</a>
+                <NavLink to="/blogs">Blogs</NavLink>
               </li>
             </ul>
           </div>
