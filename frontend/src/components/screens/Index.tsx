@@ -4,6 +4,7 @@ import Features from '~/components/home/Features';
 import PopularCourse from '~/components/home/PopularCourse';
 import Blogs from '~/components/home/Blogs';
 import CourseCategories from '~/components/home/CourseCategories';
+import Map from '../home/Map';
 
 function Index() {
   return (
@@ -14,6 +15,7 @@ function Index() {
       <PopularCourse />
       <CourseCategories />
       <Blogs />
+      <Map />
     </>
   );
 }
