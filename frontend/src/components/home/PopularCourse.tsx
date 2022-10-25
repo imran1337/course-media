@@ -1,7 +1,22 @@
 import React from 'react';
+import CourseCard from '~/components/shared/CourseCard';
 
 const PopularCourse: React.FC = () => {
-  return <div className="mt-5">PopularCourse</div>;
+  return (
+    <div className="pt-32">
+      <h1 className="text-center text-4xl">Popular Courses</h1>
+      <h2 className="text-center text-2xl mt-2">Find your dream course in online with low price.</h2>
+      <div className="flex justify-center flex-wrap mt-8">
+        <CourseCard />
+        <CourseCard />
+        <CourseCard />
+        <CourseCard />
+      </div>
+      <div className="md:text-center max-w-[1580px] mx-auto mt-5 px-4">
+        <button className="btn w-full md:w-[200px]">View All Courses</button>
+      </div>
+    </div>
+  );
 };
 
 export default PopularCourse;
