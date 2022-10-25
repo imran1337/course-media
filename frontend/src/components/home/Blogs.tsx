@@ -3,7 +3,7 @@ import BlogCard from '~/components/shared/BlogCard';
 
 const Blogs: React.FC = () => {
   return (
-    <div className="pt-32">
+    <div className="py-32">
       <h1 className="text-center text-4xl">Popular Blogs</h1>
       <h2 className="text-center text-2xl mt-2">Read ours blogs to gain knowledge.</h2>
       <div className="flex justify-center flex-wrap mt-8">
