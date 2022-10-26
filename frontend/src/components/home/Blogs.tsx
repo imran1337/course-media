@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import BlogCard from '~/components/shared/BlogCard';
 
 const Blogs: React.FC = () => {
@@ -13,7 +14,9 @@ const Blogs: React.FC = () => {
         <BlogCard />
       </div>
       <div className="md:text-center max-w-[1580px] mx-auto mt-5 px-4">
-        <button className="btn w-full md:w-[200px]">View All Blogs</button>
+        <Link to="/blogs" className="btn w-full md:w-[200px]">
+          View All Blogs
+        </Link>
       </div>
     </div>
   );

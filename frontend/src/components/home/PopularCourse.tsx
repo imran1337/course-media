@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CourseCard from '~/components/shared/CourseCard';
 
 const PopularCourse: React.FC = () => {
@@ -13,7 +14,9 @@ const PopularCourse: React.FC = () => {
         <CourseCard />
       </div>
       <div className="md:text-center max-w-[1580px] mx-auto mt-5 px-4">
-        <button className="btn w-full md:w-[200px]">View All Courses</button>
+        <Link to="/courses" className="btn w-full md:w-[200px]">
+          View All Courses
+        </Link>
       </div>
     </div>
   );
