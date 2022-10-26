@@ -5,6 +5,7 @@ import Loader from '~/components/shared/Loader';
 
 const IndexScreen = lazy(() => import('~/components/screens/Index'));
 const CoursesScreen = lazy(() => import('~/components/screens/CoursesScreen'));
+const CourseScreen = lazy(() => import('~/components/screens/CourseScreen'));
 const BlogsScreen = lazy(() => import('~/components/screens/BlogsScreen'));
 const Page404Screen = lazy(() => import('~/components/screens/404'));
 
@@ -29,6 +30,10 @@ const InnerRouter = () => {
         {
           path: '/courses',
           element: <CoursesScreen />,
+        },
+        {
+          path: 'course/:courseId',
+          element: <CourseScreen />,
         },
         {
           path: '/blogs',
