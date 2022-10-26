@@ -2,11 +2,14 @@ import { lazy, Suspense } from 'react';
 import { RouteObject, useRoutes, BrowserRouter } from 'react-router-dom';
 import Layout from '~/layout';
 import Loader from '~/components/shared/Loader';
+import { useAuthState } from '../contexts/UserContext';
+import ProtectedRoute from './ProtectedRoute';
 
 const IndexScreen = lazy(() => import('~/components/screens/Index'));
 const CoursesScreen = lazy(() => import('~/components/screens/CoursesScreen'));
 const CourseScreen = lazy(() => import('~/components/screens/CourseScreen'));
 const BlogsScreen = lazy(() => import('~/components/screens/BlogsScreen'));
+const LoginScreen = lazy(() => import('~/components/screens/LoginScreen'));
 const Page404Screen = lazy(() => import('~/components/screens/404'));
 
 export const Router = () => {
@@ -18,6 +21,8 @@ export const Router = () => {
 };
 
 const InnerRouter = () => {
+  const { state } = useAuthState();
+
   const routes: RouteObject[] = [
     {
       path: '/',
@@ -28,7 +33,7 @@ const InnerRouter = () => {
           element: <IndexScreen />,
         },
         {
-          path: '/courses',
+          path: 'courses',
           element: <CoursesScreen />,
         },
         {
@@ -36,8 +41,16 @@ const InnerRouter = () => {
           element: <CourseScreen />,
         },
         {
-          path: '/blogs',
-          element: <BlogsScreen />,
+          path: 'blogs',
+          element: (
+            <ProtectedRoute isLoggedIn={state.state !== 'UNKNOWN'}>
+              <BlogsScreen />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: 'login',
+          element: <LoginScreen />,
         },
         {
           path: '*',

@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container } from '~/components/shared/Container';
 import PostMetaTitle from '~/components/shared/PostMetaTitle';
-import data from '~/lib/data.json';
+import { fetchCourseBySlug } from '~/lib/services';
+import Loader from '../shared/Loader';
 
 const lowercaseTitle = (title: string): string => {
   const splittedTitle = title.split(' ');
@@ -10,19 +11,19 @@ const lowercaseTitle = (title: string): string => {
   return lCaseTitle.join(' ');
 };
 
-const capitalizeTitle = (title: string): string => {
-  const splittedTitle = title.split(' ');
-  const lCaseTitle = splittedTitle.slice(1).map((item) => item.toLowerCase());
-  return [splittedTitle[0], ...lCaseTitle].join(' ');
-};
-
 const CourseScreen: React.FC = () => {
+  const [courseData, setCourseData] = useState<Object | undefined>(undefined);
   const { courseId } = useParams();
   useEffect(() => {
-    //fetch data
-    console.log(courseId);
+    const data = fetchCourseBySlug(`course/${courseId}`);
+    setCourseData(data);
   }, []);
-  const { category, title, image, instructor, content, lastUpdated } = data;
+
+  if (!courseData) {
+    return <Loader />;
+  }
+  //@ts-ignore
+  const { category, title, image, instructor, content, lastUpdated } = courseData;
   return (
     <Container>
       <div className="md:w-6/12 w-full mx-auto flex items-center flex-col">
@@ -90,6 +91,10 @@ const CourseScreen: React.FC = () => {
       ) : null}
 
       {lastUpdated ? <p className="text-lg mb-4 mt-8">{lastUpdated}</p> : null}
+
+      <div className="w-full text-center mb-4 mt-8">
+        <button className="text-lg btn">Get premium access</button>{' '}
+      </div>
     </Container>
   );
 };
